@@ -6,29 +6,39 @@
         android:layout_height="wrap_content"
         android:title="calendar"
         android:icon="@drawable/calendar"
-        android:id="@+id/calendar" />
+        android:id="@+id/calendar"
+        android:textColor="#000000"
+        android:background="#000000" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="reminder"
         android:icon="@drawable/reminder"
-        android:id="@+id/reminder" />
+        android:id="@+id/reminder"
+        android:textColor="#000000"
+        android:background="#000000" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="home"
         android:icon="@drawable/home"
-        android:id="@+id/home" />
+        android:id="@+id/home"
+        android:textColor="#000000"
+        android:background="#000000" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="social"
         android:icon="@drawable/social"
-        android:id="@+id/social" />
+        android:id="@+id/social"
+        android:textColor="#000000"
+        android:background="#000000" />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="profile"
         android:icon="@drawable/profile"
-        android:id="@+id/profile" />
+        android:id="@+id/profile"
+        android:textColor="#000000"
+        android:background="#000000" />
 </menu>
