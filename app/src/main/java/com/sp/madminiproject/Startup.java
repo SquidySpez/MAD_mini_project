@@ -13,7 +13,6 @@ public class Startup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
-
         Button loginButton = findViewById(R.id.login_button);
         Button signUpButton = findViewById(R.id.signup_button);
 
@@ -34,3 +33,4 @@ public class Startup extends AppCompatActivity {
         });
     }
 }
+
