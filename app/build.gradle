@@ -6,6 +6,14 @@ android {
     namespace 'com.sp.madminiproject'
     compileSdk 34
 
+    buildFeatures {
+        dataBinding true
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.sp.madminiproject"
         minSdk 27
