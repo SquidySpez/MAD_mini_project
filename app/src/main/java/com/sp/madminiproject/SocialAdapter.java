@@ -12,52 +12,52 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> {
+public class SocialAdapter extends RecyclerView.Adapter<SocialAdapter.ProfileViewHolder> {
 
-    private List<profileModel> profileList;
+    private List<socialModel> socialList;
     private Context context;
 
-    public ProfileAdapter(List<profileModel> profileList, Context context) {
-        this.profileList = profileList;
+    public SocialAdapter(List<socialModel> socialList, Context context) {
+        this.socialList = socialList;
         this.context = context;
     }
 
     @NonNull
     @Override
     public ProfileViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.profilerow, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.socialrow, parent, false);
         return new ProfileViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
-        profileModel profile = profileList.get(position);
+        socialModel social = socialList.get(position);
 
         // Set data to the views in the ViewHolder
         // Note: You need to handle the image byte array here
         // holder.profileImage.setImageResource(/* Set image resource */);
-        holder.profileName.setText(profile.profile_name);
-        holder.profileAge.setText(profile.profile_age);
-        holder.profileRelationship.setText(profile.profile_relationship);
+        holder.socialName.setText(social.social_name);
+        holder.socialAge.setText(social.social_age);
+        holder.socialRelationship.setText(social.social_relationship);
     }
 
     @Override
     public int getItemCount() {
-        return profileList.size();
+        return socialList.size();
     }
 
     public class ProfileViewHolder extends RecyclerView.ViewHolder {
-        public ImageView profileImage;
-        public TextView profileName;
-        public TextView profileAge;
-        public TextView profileRelationship;
+        public ImageView socialImage;
+        public TextView socialName;
+        public TextView socialAge;
+        public TextView socialRelationship;
 
         public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);
-            profileImage = itemView.findViewById(R.id.profile_img);
-            profileName = itemView.findViewById(R.id.profile_name);
-            profileAge = itemView.findViewById(R.id.profile_age);
-            profileRelationship = itemView.findViewById(R.id.profile_relationship);
+            socialImage = itemView.findViewById(R.id.social_img);
+            socialName = itemView.findViewById(R.id.social_name);
+            socialAge = itemView.findViewById(R.id.social_age);
+            socialRelationship = itemView.findViewById(R.id.social_relationship);
         }
     }
 }

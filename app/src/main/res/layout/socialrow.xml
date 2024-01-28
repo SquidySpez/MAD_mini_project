@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/profile_img"
+                android:id="@+id/social_img"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/noimg"
@@ -29,28 +29,28 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/profile_name"
+                android:id="@+id/social_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/profile_img"
+                app:layout_constraintStart_toEndOf="@+id/social_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/profile_age"
+                android:id="@+id/social_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/profile_img"
-                app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                app:layout_constraintStart_toEndOf="@+id/social_img"
+                app:layout_constraintTop_toBottomOf="@+id/social_name"
                 app:layout_constraintVertical_bias="0.173" />
 
             <TextView
-                android:id="@+id/profile_relationship"
+                android:id="@+id/social_relationship"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
@@ -59,8 +59,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/profile_age"
-                app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                app:layout_constraintStart_toEndOf="@+id/social_age"
+                app:layout_constraintTop_toBottomOf="@+id/social_name"
                 app:layout_constraintVertical_bias="0.173" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

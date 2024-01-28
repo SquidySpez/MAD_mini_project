@@ -14,37 +14,37 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddProfileFragment extends Fragment {
+public class AddSocialFragment extends Fragment {
 
-    private EditText profile_name, profile_age, profile_relationship, medicalHistoryInput;
+    private EditText social_name, social_age, social_relationship, medicalHistoryInput;
     private Button addButton;
     private RecyclerView recyclerView;
-    private ProfileAdapter profileAdapter;
-    private List<profileModel> profileList;
+    private SocialAdapter socialAdapter;
+    private List<socialModel> socialList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_social, container, false);
 
         // Initialize views
-        profile_name = view.findViewById(R.id.profile_name_input);
-        profile_age = view.findViewById(R.id.profile_age_input);
-        profile_relationship = view.findViewById(R.id.profile_relationship_input);
-        medicalHistoryInput = view.findViewById(R.id.profile_medicalhistory_input);
-        addButton = view.findViewById(R.id.profileadd2);
+        social_name = view.findViewById(R.id.social_name_input);
+        social_age = view.findViewById(R.id.social_age_input);
+        social_relationship = view.findViewById(R.id.social_relationship_input);
+        medicalHistoryInput = view.findViewById(R.id.social_medicalhistory_input);
+        addButton = view.findViewById(R.id.socialadd2);
 
-        profileList = new ArrayList<>();
+        socialList = new ArrayList<>();
 
         // Find the RecyclerView in the main layout (assuming it's in the main layout)
-        recyclerView = getActivity().findViewById(R.id.profileRecyclerView);
+        recyclerView = getActivity().findViewById(R.id.socialRecyclerView);
 
-        profileAdapter = new ProfileAdapter(profileList, getContext());
+        socialAdapter = new SocialAdapter(socialList, getContext());
 
         // Set a click listener for the "Add" button
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addProfile();
+                addSocial();
                 replaceFragment(new ProfileFragment());
             }
         });
@@ -52,33 +52,33 @@ public class AddProfileFragment extends Fragment {
         return view;
     }
 
-    private void addProfile() {
+    private void addSocial() {
         // Get data from input fields
-        String name = profile_name.getText().toString();
-        String age = profile_age.getText().toString();
-        String relationship = profile_relationship.getText().toString();
+        String name = social_name.getText().toString();
+        String age = social_age.getText().toString();
+        String relationship = social_relationship.getText().toString();
 
         // Create a new profileModel instance
-        profileModel newProfile = new profileModel(name, age, relationship);
+        socialModel newSocial = new socialModel(name, age, relationship);
 
         // Add the new profile to the list
-        profileList.add(newProfile);
+        socialList.add(newSocial);
 
         // Notify the adapter that the data set has changed
-        profileAdapter.notifyDataSetChanged();
+        socialAdapter.notifyDataSetChanged();
 
-        recyclerView.setAdapter(profileAdapter);
-        profileAdapter.notifyDataSetChanged();
-        recyclerView.smoothScrollToPosition(profileList.size() - 1);
+        recyclerView.setAdapter(socialAdapter);
+        socialAdapter.notifyDataSetChanged();
+        recyclerView.smoothScrollToPosition(socialList.size() - 1);
 
         // Clear input fields
         clearInputFields();
     }
 
     private void clearInputFields() {
-        profile_name.setText("");
-        profile_age.setText("");
-        profile_relationship.setText("");
+        social_name.setText("");
+        social_age.setText("");
+        social_relationship.setText("");
     }
 
     private void replaceFragment(Fragment fragment) {
