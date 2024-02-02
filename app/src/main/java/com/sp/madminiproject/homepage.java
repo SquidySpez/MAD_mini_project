@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -27,17 +28,23 @@ public class homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
-        // for drawer menu
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-
-        // Create ActionBarDrawerToggle and set it to the DrawerLayout
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
-        drawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black)); // Change R.color.black to your desired color
-
         drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.notif) {
+                    Toast.makeText(homepage.this, "Notifs selected", Toast.LENGTH_SHORT).show();}
+                else if (item.getItemId() == R.id.settings) {
+                    Toast.makeText(homepage.this, "Settings selected", Toast.LENGTH_SHORT).show();}
+                return false;
+            }
+        });
 
-        // Enable the Up button in the action bar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -45,7 +52,6 @@ public class homepage extends AppCompatActivity {
 
         drawerToggle.syncState();
 
-        // for bottom navigation
         bottomNavigationView = findViewById(R.id.bottommenu); // Add this line to initialize bottomNavigationView
         replaceFragment(new HomeFragment());
 
