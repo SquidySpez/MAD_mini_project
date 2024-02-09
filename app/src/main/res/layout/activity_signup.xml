@@ -36,72 +36,47 @@
                     android:text="Sign Up"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:id="@+id/textViewUsername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Username"/>
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    />
 
                 <EditText
-                    android:id="@+id/editTextUsername"
+                    android:id="@+id/loginEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#D9D9D9"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:id="@+id/textViewPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Password"/>
-
-                <EditText
-                    android:id="@+id/editTextPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:background="#D9D9D9"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:id="@+id/textViewConfirmPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Confirm Password"/>
-
-                <EditText
-                    android:id="@+id/editTextConfirmPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:background="#D9D9D9"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:id="@+id/textViewEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"/>
-
-                <EditText
-                    android:id="@+id/editTextEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:inputType="textEmailAddress"
                     android:background="#D9D9D9"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="16dp"
+                    android:hint="   Email"
+                    />
+
+                <EditText
+                    android:id="@+id/loginPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="textPassword"
+                    android:background="#D9D9D9"
+                    android:layout_marginBottom="16dp"
+                    android:hint="   Password" />
+
 
                 <Button
                     android:id="@+id/buttonSignUp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="315dp"
                     android:layout_height="wrap_content"
                     android:text="Sign Up"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/loginRedirectText"
+                    android:text="Already an user? Login here."
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:textSize="18dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
