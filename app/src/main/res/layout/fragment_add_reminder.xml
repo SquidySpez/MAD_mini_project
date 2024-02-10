@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddReminder">
+    tools:context=".AddReminderFragment"
+    android:background="#F8F1E5" >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -40,14 +41,16 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/date"
+                    android:id="@+id/reminder_date_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#D9D9D9"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:inputType="datetime|date" />
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:hint="Select Date" />
             </LinearLayout>
 
             <LinearLayout
@@ -67,7 +70,7 @@
                     android:textStyle="bold" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/reminder_time_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -96,7 +99,7 @@
                 android:padding="8dp">
 
                 <EditText
-                    android:id="@+id/description"
+                    android:id="@+id/reminder_description_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -113,7 +116,7 @@
                 android:padding="8dp">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/reminderadd2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

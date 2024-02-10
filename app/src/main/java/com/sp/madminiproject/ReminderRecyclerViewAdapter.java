@@ -11,50 +11,50 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class SocialRecyclerViewAdapter extends RecyclerView.Adapter<SocialRecyclerViewAdapter.MyViewHolder> {
+public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRecyclerViewAdapter.MyViewHolder> {
 
     private final RecyclerViewInterface recyclerViewInterface;
 
     Context context;
-    ArrayList<SocialModel> socialModels;
+    ArrayList<ReminderModel> reminderModels;
 
-    public SocialRecyclerViewAdapter(Context context, ArrayList<SocialModel> socialModels, RecyclerViewInterface recyclerViewInterface) {
+    public ReminderRecyclerViewAdapter(Context context, ArrayList<ReminderModel> reminderModels, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
-        this.socialModels = socialModels;
+        this.reminderModels = reminderModels;
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
-    public SocialRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ReminderRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.socialrow, parent, false);
+        View view = inflater.inflate(R.layout.reminderrow, parent, false);
 
-        return new SocialRecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
+        return new ReminderRecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SocialRecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.tvName.setText(socialModels.get(position).getSocial_name());
-        holder.tvAge.setText(socialModels.get(position).getSocial_age());
-        holder.tvRelationship.setText(socialModels.get(position).getSocial_relationship());
+    public void onBindViewHolder(@NonNull ReminderRecyclerViewAdapter.MyViewHolder holder, int position) {
+        holder.tvDate.setText(reminderModels.get(position).getReminder_date());
+        holder.tvTime.setText(reminderModels.get(position).getReminder_time());
+        holder.tvDescription.setText(reminderModels.get(position).getReminder_description());
     }
 
     @Override
     public int getItemCount() {
-        return socialModels.size();
+        return reminderModels.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvName, tvAge, tvRelationship;
+        TextView tvDate, tvTime, tvDescription;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
-            tvName = itemView.findViewById(R.id.social_name);
-            tvAge = itemView.findViewById(R.id.social_age);
-            tvRelationship = itemView.findViewById(R.id.social_relationship);
+            tvDate = itemView.findViewById(R.id.reminder_date);
+            tvTime = itemView.findViewById(R.id.reminder_time);
+            tvDescription = itemView.findViewById(R.id.reminder_description);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
