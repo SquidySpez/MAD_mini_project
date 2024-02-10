@@ -40,4 +40,10 @@ public class ReminderHelper extends SQLiteOpenHelper {
 
         getWritableDatabase().insert("reminder_table", null, cv);
     }
+
+    public void deleteReminder(long reminderId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("reminder_table", "_id=?", new String[]{String.valueOf(reminderId)});
+        db.close();
+    }
 }

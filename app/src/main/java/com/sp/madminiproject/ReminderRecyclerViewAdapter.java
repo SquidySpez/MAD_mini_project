@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,13 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
 
     Context context;
     ArrayList<ReminderModel> reminderModels;
+    ReminderHelper db;
 
     public ReminderRecyclerViewAdapter(Context context, ArrayList<ReminderModel> reminderModels, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.reminderModels = reminderModels;
         this.recyclerViewInterface = recyclerViewInterface;
+        this.db = new ReminderHelper(context);
     }
 
     @NonNull
@@ -45,9 +48,10 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
         return reminderModels.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvDate, tvTime, tvDescription;
+        Button deleteButton;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -55,6 +59,7 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
             tvDate = itemView.findViewById(R.id.reminder_date);
             tvTime = itemView.findViewById(R.id.reminder_time);
             tvDescription = itemView.findViewById(R.id.reminder_description);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -68,6 +73,23 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                     }
                 }
             });
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        ReminderModel reminder = reminderModels.get(position);
+                        deleteItem(reminder.getId(), position);
+                    }
+                }
+            });
+        }
+
+        private void deleteItem(long reminderId, int position) {
+            db.deleteReminder(reminderId);
+            reminderModels.remove(position);
+            notifyItemRemoved(position);
         }
     }
 }

@@ -1,17 +1,17 @@
 package com.sp.madminiproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class CompletedReminder extends AppCompatActivity {
+import androidx.fragment.app.Fragment;
+
+public class CompletedReminder extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_completed_reminder);
-
-        setTitle("Completed Reminders");
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_completed_reminder, container, false);
+        return view;
     }
 }
