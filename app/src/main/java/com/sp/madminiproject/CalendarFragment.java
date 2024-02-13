@@ -1,5 +1,6 @@
 package com.sp.madminiproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +61,37 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        getActivity().setTitle("Appointments");
+
+        Button pastButton = view.findViewById(R.id.past);
+        Button newappointButton = view.findViewById(R.id.newappoint);
+
+
+        View.OnClickListener buttonClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Determine which button was clicked
+                if (v.getId() == R.id.past) {
+                    Intent intent = new Intent(getActivity(), CompletedReminder.class);
+
+                    // Start the activity
+                    startActivity(intent);
+                } else if (v.getId() == R.id.newappoint) {
+                    Intent intent = new Intent(getActivity(), AddAppointmentMap.class);
+
+                    // Start the activity
+                    startActivity(intent);
+
+                }
+            }
+        };
+
+        // Set the common OnClickListener for both buttons
+        pastButton.setOnClickListener(buttonClickListener);
+        newappointButton.setOnClickListener(buttonClickListener);
+
+        return view;
     }
+
 }

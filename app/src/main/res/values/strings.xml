@@ -13,5 +13,5 @@
         <item>1:15PM</item>
         <item>1:30PM</item>
     </string-array>
-
+    <string name="title_activity_add_appointment_google_map">AddAppointmentGoogleMap</string>
 </resources>

@@ -1,8 +1,5 @@
 package com.sp.madminiproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +8,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.cardview.widget.CardView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 
 public class Signup extends AppCompatActivity {
 
@@ -47,7 +44,7 @@ public class Signup extends AppCompatActivity {
                     signupEmail.setError("Email cannot be empty");
                 }
                 if (pass.isEmpty()){
-                    signupPassword.setError("Email cannot be empty");
+                    signupPassword.setError("Password cannot be empty");
                 } else {
                     auth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -56,7 +53,7 @@ public class Signup extends AppCompatActivity {
                                 Toast.makeText(Signup.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(Signup.this, Login.class));
                             } else {
-                                Toast.makeText(Signup.this, "SignUp Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Signup.this, "SignUp Failed " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

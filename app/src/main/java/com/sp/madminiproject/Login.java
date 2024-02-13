@@ -1,9 +1,7 @@
 package com.sp.madminiproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -11,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,6 +49,12 @@ public class Login extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                         Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+
+                                        String userEmail = auth.getCurrentUser().getEmail();
+                                        saveUserEmailToSharedPreferences(userEmail);
+
+
                                         startActivity(new Intent(Login.this, homepage.class));
                                         finish();
                                     }
@@ -75,5 +82,12 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveUserEmailToSharedPreferences(String userEmail) {
+        SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("USER_EMAIL", userEmail);
+        editor.apply();
     }
 }
