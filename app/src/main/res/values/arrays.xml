@@ -26,4 +26,9 @@
         <item>10pm</item>
         <item>11pm</item>
     </string-array>
+    <string-array name="appointment_time_options">
+        <item>8am to 10am</item>
+        <item>11am to 1pm</item>
+        <item>2pm to 4pm</item>
+    </string-array>
 </resources>
