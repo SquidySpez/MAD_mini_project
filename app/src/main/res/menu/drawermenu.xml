@@ -14,7 +14,7 @@
         android:title="Social" />
     <item
         android:id="@+id/draw_profile"
-        android:icon="@drawable/profile"
+        android:icon="@drawable/profileimg"
         android:title="Profile" />
     <item
         android:id="@+id/draw_settings"
