@@ -54,8 +54,9 @@ public class SocialFragment extends Fragment implements RecyclerViewInterface {
                 String name = cursor.getString(cursor.getColumnIndexOrThrow("social_name"));
                 String age = cursor.getString(cursor.getColumnIndexOrThrow("social_age"));
                 String relationship = cursor.getString(cursor.getColumnIndexOrThrow("social_relationship"));
+                String medicalhistory = cursor.getString(cursor.getColumnIndexOrThrow("medicalHistoryInput"));
 
-                socialModels.add(new SocialModel(name, age, relationship));
+                socialModels.add(new SocialModel(name, age, relationship, medicalhistory));
 
             } while (cursor.moveToNext());
 
@@ -73,5 +74,18 @@ public class SocialFragment extends Fragment implements RecyclerViewInterface {
 
     @Override
     public void onItemClick(int position) {
+        SocialModel clickedSocial = socialModels.get(position);
+
+        // Pass the data to SocialFragment2
+        Bundle bundle = new Bundle();
+        bundle.putString("name", clickedSocial.getSocial_name());
+        bundle.putString("age", clickedSocial.getSocial_age());
+        bundle.putString("relationship", clickedSocial.getSocial_relationship());
+        bundle.putString("medicalhistory", clickedSocial.getMedicalHistoryInput());
+
+        SocialFragment2 socialFragment2 = new SocialFragment2();
+        socialFragment2.setArguments(bundle);
+
+        replaceFragment(socialFragment2);
     }
 }

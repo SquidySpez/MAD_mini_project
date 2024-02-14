@@ -4,12 +4,13 @@ public class SocialModel {
     String social_name;
     String social_age;
     String social_relationship;
+    String medicalHistoryInput;
 
-    public SocialModel(String social_name, String social_age, String social_relationship) {
+    public SocialModel(String social_name, String social_age, String social_relationship, String medicalHistoryInput) {
         this.social_name = social_name;
         this.social_age = social_age;
         this.social_relationship = social_relationship;
-
+        this.medicalHistoryInput = medicalHistoryInput;
     }
 
     public String getSocial_name() {
@@ -22,5 +23,9 @@ public class SocialModel {
 
     public String getSocial_relationship() {
         return social_relationship;
+    }
+
+    public String getMedicalHistoryInput() {
+        return medicalHistoryInput;
     }
 }
