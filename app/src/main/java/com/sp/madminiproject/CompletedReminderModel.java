@@ -1,16 +1,12 @@
 package com.sp.madminiproject;
 
-import android.util.Log;
-
-public class ReminderModel {
+public class CompletedReminderModel {
     String reminder_date;
     String reminder_time;
     String reminder_description;
-
     long _id;
 
-    // Updated constructor to include the id parameter
-    public ReminderModel(String reminder_date, String reminder_time, String reminder_description, long _id) {
+    public CompletedReminderModel(String reminder_date, String reminder_time, String reminder_description, long _id) {
         this.reminder_date = reminder_date;
         this.reminder_time = reminder_time;
         this.reminder_description = reminder_description;

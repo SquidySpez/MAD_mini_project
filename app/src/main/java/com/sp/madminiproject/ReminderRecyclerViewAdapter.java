@@ -1,6 +1,7 @@
 package com.sp.madminiproject;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import com.sp.madminiproject.OnCompleteButtonClickListener;
 
 public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRecyclerViewAdapter.MyViewHolder> {
 
     private final RecyclerViewInterface recyclerViewInterface;
+    private final OnCompleteButtonClickListener onCompleteButtonClickListener;
 
     Context context;
     ArrayList<ReminderModel> reminderModels;
     ReminderHelper db;
 
-    public ReminderRecyclerViewAdapter(Context context, ArrayList<ReminderModel> reminderModels, RecyclerViewInterface recyclerViewInterface) {
+    public ReminderRecyclerViewAdapter(Context context, ArrayList<ReminderModel> reminderModels, RecyclerViewInterface recyclerViewInterface, OnCompleteButtonClickListener onCompleteButtonClickListener) {
         this.context = context;
         this.reminderModels = reminderModels;
         this.recyclerViewInterface = recyclerViewInterface;
         this.db = new ReminderHelper(context);
+        this.onCompleteButtonClickListener = onCompleteButtonClickListener;
     }
 
     @NonNull
@@ -38,9 +42,37 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
 
     @Override
     public void onBindViewHolder(@NonNull ReminderRecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.tvDate.setText(reminderModels.get(position).getReminder_date());
-        holder.tvTime.setText(reminderModels.get(position).getReminder_time());
-        holder.tvDescription.setText(reminderModels.get(position).getReminder_description());
+        ReminderModel reminder = reminderModels.get(position);
+        Log.d("ReminderRecyclerView", "Binding item with ID: " + reminder.getId());
+
+        holder.tvDate.setText(reminder.getReminder_date());
+        holder.tvTime.setText(reminder.getReminder_time());
+        holder.tvDescription.setText(reminder.getReminder_description());
+
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    long reminderId = reminder.getId();
+                    Log.d("ReminderRecyclerView", "Clicked item with ID: " + reminderId);
+                    deleteItem(reminderId, position);
+                }
+            }
+        });
+
+        holder.completeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    ReminderModel reminder = reminderModels.get(position);
+                    if (onCompleteButtonClickListener != null) {
+                        onCompleteButtonClickListener.onCompleteButtonClick(reminder.getId());
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -51,7 +83,7 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvDate, tvTime, tvDescription;
-        Button deleteButton;
+        Button deleteButton, completeButton;;
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -60,6 +92,7 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
             tvTime = itemView.findViewById(R.id.reminder_time);
             tvDescription = itemView.findViewById(R.id.reminder_description);
             deleteButton = itemView.findViewById(R.id.deleteButton);
+            completeButton = itemView.findViewById(R.id.completeButton);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,11 +118,22 @@ public class ReminderRecyclerViewAdapter extends RecyclerView.Adapter<ReminderRe
                 }
             });
         }
+    }
+    private void deleteItem(long reminderId, int position) {
+        Log.d("ReminderRecyclerView", "Deleting item with ID: " + reminderId); // Log the ID
+        db.deleteReminder(reminderId);
+        reminderModels.remove(position);
+        notifyItemRemoved(position);
+    }
 
-        private void deleteItem(long reminderId, int position) {
-            db.deleteReminder(reminderId);
-            reminderModels.remove(position);
-            notifyItemRemoved(position);
+    public void removeItem(long reminderId) {
+        for (int i = 0; i < reminderModels.size(); i++) {
+            ReminderModel model = reminderModels.get(i);
+            if (model.getId() == reminderId) {
+                reminderModels.remove(i);
+                notifyItemRemoved(i);
+                break;
+            }
         }
     }
 }

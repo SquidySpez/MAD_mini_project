@@ -13,10 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import java.util.ArrayList;
 
-public class ReminderFragment extends Fragment implements RecyclerViewInterface {
+public class ReminderFragment extends Fragment implements RecyclerViewInterface, OnCompleteButtonClickListener {
 
     private ArrayList<ReminderModel> reminderModels = new ArrayList<>();
     private ReminderHelper db;
+    private ReminderRecyclerViewAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class ReminderFragment extends Fragment implements RecyclerViewInterface 
         db = new ReminderHelper(getContext());
         RecyclerView recyclerView = view.findViewById(R.id.reminderRecyclerView);
 
-        ReminderRecyclerViewAdapter adapter = new ReminderRecyclerViewAdapter(getContext(), reminderModels, this);
+        adapter = new ReminderRecyclerViewAdapter(getContext(), reminderModels, this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -60,7 +61,9 @@ public class ReminderFragment extends Fragment implements RecyclerViewInterface 
                 String time = cursor.getString(cursor.getColumnIndexOrThrow("reminder_time"));
                 String description = cursor.getString(cursor.getColumnIndexOrThrow("reminder_description"));
 
-                reminderModels.add(new ReminderModel(date, time, description));
+                long insertedId = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+
+                reminderModels.add(new ReminderModel(date, time, description, insertedId));
 
             } while (cursor.moveToNext());
 
@@ -79,5 +82,12 @@ public class ReminderFragment extends Fragment implements RecyclerViewInterface 
     @Override
     public void onItemClick(int position) {
         // Handle item click if needed
+    }
+
+    @Override
+    public void onCompleteButtonClick(long reminderId) {
+        db.markReminderAsCompleted(reminderId);
+        adapter.removeItem(reminderId);
+        replaceFragment(new CompletedReminder());
     }
 }

@@ -7,6 +7,7 @@
     tools:context=".CompletedReminder">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/completedReminderRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F8F1E5" />
